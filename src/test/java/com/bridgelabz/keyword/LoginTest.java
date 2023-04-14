@@ -14,6 +14,7 @@ public class LoginTest {
     @Test
     public void homePageTest(){
         keywordEngine=new KeywordEngine();
+        keywordEngine.starExecution("login");
         keywordEngine.starExecution("home");
     }
 
