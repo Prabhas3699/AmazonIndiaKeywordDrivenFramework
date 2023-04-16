@@ -5,6 +5,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -13,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Set;
 
 public class KeywordEngine {
     public WebDriver driver;
@@ -20,6 +22,7 @@ public class KeywordEngine {
     BaseClass baseClass;
     WebElement element;
     Actions actions;
+    JavascriptExecutor js;
 
     public static Workbook workbook;
     public static Sheet sheet;
@@ -85,6 +88,16 @@ public class KeywordEngine {
                         }
                         driver.close();
                         break;
+                    case "scroll":
+                        String parentWindowHandleId = driver.getWindowHandle();
+                        Set<String> windowHandles = driver.getWindowHandles();
+                        for (String windowHandle : windowHandles) {
+                            System.out.println("window handle Id: " + windowHandle);
+                            if (!windowHandle.equals(parentWindowHandleId)) {
+                                driver.switchTo().window(windowHandle);
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -107,6 +120,14 @@ public class KeywordEngine {
                         }else if (action.equalsIgnoreCase("doubleClick")) {
                             actions=new Actions(driver);
                             actions.doubleClick(element).perform();
+                        }else if (action.equalsIgnoreCase("mouseOver")) {
+                            actions=new Actions(driver);
+                            actions.moveToElement(element).perform();
+                        }else if (action.equalsIgnoreCase("scroll")) {
+                            js=(JavascriptExecutor) driver;
+                            int x=element.getLocation().getX();
+                            int y=element.getLocation().getY();
+                            js.executeScript("window.scrollBy("+x+","+y+")");
                         }
                         break;
                     case "name":
@@ -126,6 +147,14 @@ public class KeywordEngine {
                         }else if (action.equalsIgnoreCase("doubleClick")) {
                             actions=new Actions(driver);
                             actions.doubleClick(element).perform();
+                        }else if (action.equalsIgnoreCase("mouseOver")) {
+                            actions=new Actions(driver);
+                            actions.moveToElement(element).perform();
+                        }else if (action.equalsIgnoreCase("scroll")) {
+                            js=(JavascriptExecutor) driver;
+                            int x=element.getLocation().getX();
+                            int y=element.getLocation().getY();
+                            js.executeScript("window.scrollBy("+x+","+y+")");
                         }
                         break;
                     case "xpath":
@@ -145,6 +174,14 @@ public class KeywordEngine {
                         }else if (action.equalsIgnoreCase("doubleClick")) {
                             actions=new Actions(driver);
                             actions.doubleClick(element).perform();
+                        }else if (action.equalsIgnoreCase("mouseOver")) {
+                            actions=new Actions(driver);
+                            actions.moveToElement(element).perform();
+                        }else if (action.equalsIgnoreCase("scroll")) {
+                            js=(JavascriptExecutor) driver;
+                            int x=element.getLocation().getX();
+                            int y=element.getLocation().getY();
+                            js.executeScript("window.scrollBy("+x+","+y+")");
                         }
                         break;
                     case "cssSelector":
@@ -164,6 +201,14 @@ public class KeywordEngine {
                         }else if (action.equalsIgnoreCase("doubleClick")) {
                             actions=new Actions(driver);
                             actions.doubleClick(element).perform();
+                        }else if (action.equalsIgnoreCase("mouseOver")) {
+                            actions=new Actions(driver);
+                            actions.moveToElement(element).perform();
+                        }else if (action.equalsIgnoreCase("scroll")) {
+                            js=(JavascriptExecutor) driver;
+                            int x=element.getLocation().getX();
+                            int y=element.getLocation().getY();
+                            js.executeScript("window.scrollBy("+x+","+y+")");
                         }
                         break;
                     case "className":
@@ -183,6 +228,14 @@ public class KeywordEngine {
                         }else if (action.equalsIgnoreCase("doubleClick")) {
                             actions=new Actions(driver);
                             actions.doubleClick(element).perform();
+                        }else if (action.equalsIgnoreCase("mouseOver")) {
+                            actions=new Actions(driver);
+                            actions.moveToElement(element).perform();
+                        }else if (action.equalsIgnoreCase("scroll")) {
+                            js=(JavascriptExecutor) driver;
+                            int x=element.getLocation().getX();
+                            int y=element.getLocation().getY();
+                            js.executeScript("window.scrollBy("+x+","+y+")");
                         }
                         break;
                     case "tagName":
@@ -202,6 +255,14 @@ public class KeywordEngine {
                         }else if (action.equalsIgnoreCase("doubleClick")) {
                             actions=new Actions(driver);
                             actions.doubleClick(element).perform();
+                        }else if (action.equalsIgnoreCase("mouseOver")) {
+                            actions=new Actions(driver);
+                            actions.moveToElement(element).perform();
+                        }else if (action.equalsIgnoreCase("scroll")) {
+                            js=(JavascriptExecutor) driver;
+                            int x=element.getLocation().getX();
+                            int y=element.getLocation().getY();
+                            js.executeScript("window.scrollBy("+x+","+y+")");
                         }
                         break;
                     case "linkText":
