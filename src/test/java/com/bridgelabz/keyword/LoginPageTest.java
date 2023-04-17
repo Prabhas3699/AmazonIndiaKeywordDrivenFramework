@@ -3,7 +3,7 @@ package com.bridgelabz.keyword;
 import com.bridgelabz.k.engine.KeywordEngine;
 import org.testng.annotations.Test;
 
-public class LoginTest {
+public class LoginPageTest {
     KeywordEngine keywordEngine;
 
     @Test

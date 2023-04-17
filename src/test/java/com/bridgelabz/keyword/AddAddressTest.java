@@ -8,8 +8,6 @@ public class AddAddressTest {
     @Test
     public void addAddressTest(){
         keywordEngine=new KeywordEngine();
-        keywordEngine.starExecution("login");
-        keywordEngine.starExecution("home");
         keywordEngine.starExecution("addAddress");
     }
 }

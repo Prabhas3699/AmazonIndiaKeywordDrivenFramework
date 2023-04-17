@@ -1,11 +1,13 @@
 package com.bridgelabz.k.base;
 
+import com.bridgelabz.k.util.WebEventListener;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +17,8 @@ import java.util.Properties;
 public class BaseClass {
     public static WebDriver driver;
     Properties properties;
+    EventFiringWebDriver eventFiringWebDriver;
+    WebEventListener eventListener;
 
     public Properties initializeProperties() {
         properties = new Properties();
@@ -47,6 +51,10 @@ public class BaseClass {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         }
+        eventFiringWebDriver=new EventFiringWebDriver(driver);
+        eventListener=new WebEventListener();
+        driver=eventFiringWebDriver.register(eventListener);
+
         driver.manage().window().maximize();
         return driver;
     }
